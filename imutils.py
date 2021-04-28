@@ -15,7 +15,7 @@ from astropy.stats import sigma_clipped_stats
 from astroscrappy import detect_cosmics
 
 
-def ARTNreduce(filename):
+def ARTNreduce(filename='', to_fits=True):
     """
     Take a raw FITS image from an ARTN imager (currently only mont4k is supported), perform basic overscan subtraction
     and trimming, and then stitch the images into a single image with the correct sky orientation (E left, N up).
@@ -51,6 +51,12 @@ def ARTNreduce(filename):
     stitched = CCDData(clean_data, wcs=w, unit=reduced[0].unit)
     stitched.header['BINNING'] = xbin
     stitched.header['AIRMASS'] = airm
+    
+    # added by PND
+    if to_fits:
+        _base = os.path.basename(filename)
+        _fits = f'{_base.split('.')}_sitched.fits'
+        stitched.write(_fits)
     return stitched
 
 
