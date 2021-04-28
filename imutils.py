@@ -50,14 +50,17 @@ def ARTNreduce(filename='', to_fits=True):
     blank[:, :] = np.fliplr(blank)
     cr_mask, clean_data = detect_cosmics(blank, sigclip=5., niter=5, cleantype='medmask', psffwhm=30./xbin)
     stitched = CCDData(clean_data, wcs=w, unit=reduced[0].unit)
-    stitched.header['BINNING'] = xbin
-    stitched.header['AIRMASS'] = airm
-    
+    #stitched.header['BINNING'] = xbin
+    #stitched.header['AIRMASS'] = airm
+    stitched.header = fullim.header
+
+
     # added by PND
-    if to_fits:
-        _base = os.path.basename(filename)
-        _fits = f"{_base.split('.')[0]}_sitched.fits"
-        stitched.write(_fits)
+    #if to_fits:
+    #    _base = os.path.basename(filename)
+    #    _fits = f"{_base.split('.')[0]}_sitched.fits"
+    #i    stitched.write(_fits)
+
     return stitched
 
 
