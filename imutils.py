@@ -55,7 +55,7 @@ def ARTNreduce(filename='', to_fits=True):
     # added by PND
     if to_fits:
         _base = os.path.basename(filename)
-        _fits = f'{_base.split('.')}_sitched.fits'
+        _fits = f"{_base.split('.')[0]}_sitched.fits"
         stitched.write(_fits)
     return stitched
 
