@@ -45,6 +45,8 @@ def ARTNreduce(filename):
     blank = np.zeros((ysize, xsize*2))
     blank[:, :xsize] = reduced[1].data
     blank[:, xsize:] = np.fliplr(reduced[0].data)
+    # line added by PND to do the correct flip!
+    blank[:, :] = np.fliplr(blank)
     cr_mask, clean_data = detect_cosmics(blank, sigclip=5., niter=5, cleantype='medmask', psffwhm=30./xbin)
     stitched = CCDData(clean_data, wcs=w, unit=reduced[0].unit)
     stitched.header['BINNING'] = xbin
