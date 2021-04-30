@@ -14,7 +14,7 @@ import ccdproc
 from photutils import DAOStarFinder
 from astropy.stats import sigma_clipped_stats
 from astroscrappy import detect_cosmics
-
+from astropy.modeling import models
 
 def ARTNreduce(filename='', to_fits=True):
     """
@@ -32,7 +32,8 @@ def ARTNreduce(filename='', to_fits=True):
         im = CCDData.read(filename, hdu=h)
         oscansec = im.header['BIASSEC']
         trimsec = im.header['TRIMSEC']
-        im = ccdproc.subtract_overscan(im, fits_section=oscansec, overscan_axis=None)
+        poly_model = models.Polynomial1D(1)
+        im = ccdproc.subtract_overscan(im, fits_section=oscansec, overscan_axis=None,model=poly_model)
         im = ccdproc.trim_image(im, fits_section=trimsec)
         reduced.append(im)
 
