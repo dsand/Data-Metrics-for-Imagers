@@ -14,7 +14,6 @@ import ccdproc
 from photutils import DAOStarFinder
 from astropy.stats import sigma_clipped_stats
 from astroscrappy import detect_cosmics
-from astropy.modeling import models
 
 def ARTNreduce(filename='', to_fits=True):
     """
