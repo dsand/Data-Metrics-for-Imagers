@@ -13,3 +13,5 @@ These metrics should be saved in a databased and presented in a clear visual for
 Over time, tracking of these values will help to assess the overall health of the imager.  
 
 Real time metrics of calibration data, specifically bias and flat field frames, will also be important.  Bias frames should be monitored for stability and noise properties.  Flat fields for count values, noise and broad changes over time.
+
+D. Sand is running and testing the code with astroconda python 3, and a pip installed version of ccdproc.
