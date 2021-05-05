@@ -8,7 +8,7 @@ Real time image quality metrics will be provided for each science and calibratio
 3. Image quality, in the form of image FWHM and ellipticity, to aid in observing decision-making.  This should be measured for stars across the field of view of the imager.
 4. Pointing accuracy, as determined through a WCS solution of the image (or perhaps something simpler)
 
-These metrics should be saved in a databased and presented in a clear visual format to the classical/queue observer.  This database should also have access to TCS and weather values for later analysis.  Data may also be placed in image headers, but perhpas that is for version 2 of the code.
+These metrics should be saved in a databased and presented in a clear visual format to the classical/queue observer.  This database should also have access to TCS and weather values for later analysis.  Data may also be placed in image headers, but perhaps that is for version 2 of the code.
 
 Over time, tracking of these values will help to assess the overall health of the imager.  
 
