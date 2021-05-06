@@ -15,7 +15,7 @@ from photutils import DAOStarFinder
 from astropy.stats import sigma_clipped_stats
 from astroscrappy import detect_cosmics
 
-def ARTNreduce(filename='', to_fits=True):
+def ARTNreduce(filename='', to_fits=False):
     """
     Take a raw FITS image from an ARTN imager (currently only mont4k is supported), perform basic overscan subtraction
     and trimming, and then stitch the images into a single image with the correct sky orientation (E left, N up).
@@ -56,10 +56,14 @@ def ARTNreduce(filename='', to_fits=True):
 
 
     # added by PND
-    #if to_fits:
-    #    _base = os.path.basename(filename)
-    #    _fits = f"{_base.split('.')[0]}_sitched.fits"
-    #i    stitched.write(_fits)
+    #This is for quick testing
+    if to_fits:
+        
+        _base = os.path.basename(filename)
+        _fits = f"{_base.split('.')[0]}_stitched.fits"
+        if os.path.isfile(_fits):
+            os.remove(_fits)
+        stitched.write(_fits)
 
     return stitched
 
@@ -143,7 +147,7 @@ def measure_fwhm(array,displ):
 
 def cutout_sources(
     image: CCDData,
-    cat: photutils.segmentation.properties.SourceCatalog,
+    #cat: photutils.segmentation.properties.SourceCatalog,
     size: int = 150,                # cutout size
     buffer: int = 10,                # edge buffer
     saturation: int = 60000,        # when saturation is reached
